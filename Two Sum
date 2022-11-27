@@ -1,0 +1,17 @@
+    public int[] TwoSum(int[] nums, int target) {
+        Dictionary<int,int> dict = new Dictionary<int,int>();
+        
+        for(int i = 0; i<nums.Length; i++)
+        {
+            dict[nums[i]]=i;
+        }
+        
+        for(int j = 0; j < nums.Length; j++)
+        {
+            int secondTerm = target - nums[j];
+            
+            if (dict.ContainsKey(secondTerm) && j != dict[secondTerm])
+                return new int[2] {j,dict[secondTerm]};
+        }
+        return new int[2]{-1,-1};
+    }
