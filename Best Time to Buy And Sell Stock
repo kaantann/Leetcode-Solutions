@@ -1,0 +1,21 @@
+public class Solution {
+    public int MaxProfit(int[] prices) {
+        int result = 0;
+    
+        int buy=0;
+        
+        for(int sell = 1; sell < prices.Length; sell++)
+        {
+            if (prices[sell] - prices[buy] < 0)
+            {
+                buy = sell;
+                continue;
+            }
+            
+            result = Math.Max(result,prices[sell]-prices[buy]);
+        }
+        
+        return result;
+        
+    }
+}
