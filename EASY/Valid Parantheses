@@ -1,0 +1,35 @@
+public class Solution {
+    public bool IsValid(string s) {
+
+        Stack<char> stackk = new Stack<char>();
+        var arr = s.ToCharArray();
+        
+        for(int i =0; i<arr.Length; i++)
+        {
+            if(arr[i] == '(')
+            {
+                stackk.Push(')');
+                continue;
+            }
+            else if(arr[i] == '{')
+            {
+                stackk.Push('}');
+                continue;
+            }
+            else if(arr[i] == '[')
+            {
+                stackk.Push(']');
+                continue;
+            }
+            else if(stackk.Count == 0 || stackk.Pop() != arr[i])
+            {
+                return false;
+            }
+        }
+        
+        if(stackk.Count != 0)
+            return false;
+        return true;
+        
+    }
+}
