@@ -1,0 +1,26 @@
+public class Solution {
+    public int ClimbStairs(int n) {
+        
+        return ClimbStairsWithMemo(n, new Dictionary<int,int>());
+    }
+
+    public int ClimbStairsWithMemo(int n, Dictionary<int,int> memo)
+    {
+        if (memo.ContainsKey(n))
+        {
+            return memo[n];
+        }
+
+        if (n == 1)
+        {
+            return 1;
+        }
+        
+        if (n == 2)
+        {
+            return 2;
+        }
+        memo[n] =  ClimbStairsWithMemo(n-1,memo) + ClimbStairsWithMemo(n-2,memo);
+        return memo[n];
+    }
+}
