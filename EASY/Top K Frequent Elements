@@ -1,0 +1,40 @@
+public class Solution {
+    public int[] TopKFrequent(int[] nums, int k) {
+        int[] result = new int[k];
+        Dictionary<int,int> numCounter = new Dictionary<int,int>();
+
+        for(int i = 0; i < nums.Length; i++)
+        {
+            if(numCounter.ContainsKey(nums[i]))
+                numCounter[nums[i]] += 1;
+            else
+                numCounter[nums[i]] = 0;
+        }
+        
+
+        List<int> keyList = numCounter.Keys.ToList();
+        int currentLoop = 0;
+
+        while(currentLoop < k)
+        {
+            int maxKey = -999;
+            int maxVal = Int32.MinValue;
+            
+            for(int i = 0; i < keyList.Count ; i++)
+            {
+                if (numCounter[keyList[i]] > maxVal)
+                {
+                    maxKey = keyList[i];
+                    maxVal = numCounter[keyList[i]];
+                }
+
+            }
+
+            result[currentLoop] = maxKey;
+            keyList.Remove(maxKey);
+            currentLoop++;
+        }
+
+        return result;
+    }
+}
